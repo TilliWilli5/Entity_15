@@ -102,6 +102,53 @@ CApplication.Create.prototype.LoadStateFromDB = function()
 //
 //
 //
+CApplication.Create.prototype.LoadConstellationFromFile = function()
+{
+	//return JSON.parse(window.localStorage.getItem("state"));
+	var fileInput = document.createElement("input");
+	fileInput.type = "file";
+	fileInput.style.visibility = "collapse";
+	fileInput.onchange = function()
+	{
+		var reader = new FileReader();
+		reader.onload = function()
+		{
+			var theParser = new CEDLParser.Create();
+			var theReproductor = new CEDLReproductor.Create();
+			var preEntities = theParser.Parse(this.result);
+			console.log(theParser.atomLib);
+			console.log(preEntities);
+			theReproductor.GiveRise(preEntities, theParser.atomLib);
+		}
+		reader.readAsText(fileInput.files[0]);
+	}
+	window.f = fileInput;
+	document.body.appendChild(fileInput);
+	fileInput.click();
+}
+CApplication.Create.prototype.RestoreConstellation = function(pConstellation)
+{
+	var fileInput = document.createElement("input");
+	fileInput.type = "file";
+	fileInput.style.visibility = "collapse";
+	fileInput.onchange = function()
+	{
+		var reader = new FileReader();
+		reader.onload = function()
+		{
+			console.log(this.result);
+			console.log("++++++++++++++++++++++");
+			console.log(CEDLParser.Parse(this.result));
+		}
+		reader.readAsText(fileInput.files[0]);
+	}
+	window.f = fileInput;
+	document.body.appendChild(fileInput);
+	fileInput.click();
+}
+//
+//
+//
 CApplication.Create.prototype.RestoreState = function(pState)
 {
 	//Creating all entities

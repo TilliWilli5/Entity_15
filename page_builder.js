@@ -41,10 +41,12 @@ function MainMenu(pURL)
 		mm.appendChild(RoundLink("Create New", function(){;}));
 		mm.appendChild(RoundLink("Load File", function(){CApplication.theApplication.LoadStateFromFile()}));
 		mm.appendChild(RoundLink("Load DB", function(){CApplication.theApplication.LoadStateFromDB()}));
+		mm.appendChild(RoundLink("Load EDL", function(){CApplication.theApplication.LoadConstellationFromFile()}));
 		
 		mm.appendChild(RoundLink("Save Offline", function(){CApplication.theApplication.SaveStateToLocalStorage(CEntity)}));
 		mm.appendChild(RoundLink("*", function(){alert("Hey!")}));
 		mm.appendChild(RoundLink("Save File", function(){CApplication.theApplication.SaveStateToFile(CEntity)}));
 		mm.appendChild(RoundLink("Save DB", function(){CApplication.theApplication.SaveStateToDB(CEntity)}));
+		mm.appendChild(RoundLink("Save EDL", function(){}));
 	return mm;
 }
